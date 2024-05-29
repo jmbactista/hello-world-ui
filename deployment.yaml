@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: hello-world-ui-nonprod
-        image: jmbactista/hello-world-nginx:latest
+        image: jmbactista/hello-world-nginx
         ports:
         - containerPort: 80
 ---
