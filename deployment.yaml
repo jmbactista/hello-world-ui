@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hello-world-ui-nonprod
+  labels:
+    app: hello-world-ui-nonprod
 spec:
   replicas: 1
   selector:
@@ -14,7 +16,7 @@ spec:
     spec:
       containers:
       - name: hello-world-ui-nonprod
-        image: nginx:latest
+        image: jmbactista/hello-world-nginx:latest
         ports:
         - containerPort: 80
 ---
@@ -23,8 +25,10 @@ kind: Service
 metadata:
   name: hello-world-ui-nonprod
 spec:
-  type: LoadBalancer
-  ports:
-  - port: 80
   selector:
     app: hello-world-ui-nonprod
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer
